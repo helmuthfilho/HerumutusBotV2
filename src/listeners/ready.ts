@@ -1,12 +1,11 @@
 import { Client, ActivityType } from "discord.js";
 import { APIApplicationCommandOption, Routes } from "discord-api-types/v9";
-import { CommandList } from "../commands/_command_list";
 import { REST } from "@discordjs/rest"
 
 export default (client: Client): void => {
   client.on("ready", async () => {
     if(!client.user || !client.application){
-          return;
+      return;
     }
     try {
       const rest = new REST({ version: "9" }).setToken(
@@ -19,8 +18,9 @@ export default (client: Client): void => {
         type?: number;
         options?: APIApplicationCommandOption[];
       }[] = [];
-  
-      CommandList.forEach((command) =>
+      
+      let commandList = Array.from(client.commands.values())
+      commandList.forEach((command) =>
         commandData.push(
           command.data.toJSON() as {
             name: string;
