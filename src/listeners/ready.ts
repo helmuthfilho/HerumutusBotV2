@@ -7,6 +7,7 @@ export default (client: Client): void => {
     if(!client.user || !client.application){
       return;
     }
+    console.log(client.guilds.cache.entries())
     try {
       const rest = new REST({ version: "9" }).setToken(
         process.env.TOKEN as string
@@ -30,6 +31,7 @@ export default (client: Client): void => {
           }
         )
       );
+      //TODO: Send commands to multiple discord servers
       await rest.put(
         Routes.applicationGuildCommands(
           client.user?.id || "missing token",
@@ -43,6 +45,6 @@ export default (client: Client): void => {
     }
 
     console.log(`${client.user.username} is online!`);
-    client.user.setActivity("💸 ₿itcoin's price 💸", {type: ActivityType.Watching});
+    client.user.setActivity("My slash commands", {type: ActivityType.Watching});
   });
 }

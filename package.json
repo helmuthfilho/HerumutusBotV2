@@ -1,5 +1,5 @@
 {
-  "name": "herumutus-crypto",
+  "name": "herumutus-bot-v2",
   "version": "1.0.0",
   "description": "Typescript",
   "main": "src/index.ts",
@@ -7,7 +7,7 @@
     "start": "ts-node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Herumutu",
+  "author": "Helmuth Risch",
   "license": "ISC",
   "dependencies": {
     "@discordjs/rest": "^1.3.0",
