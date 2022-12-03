@@ -1,7 +1,6 @@
 import { Client, ActivityType, EmbedBuilder, ChannelType } from "discord.js";
 import { APIApplicationCommandOption, Routes } from "discord-api-types/v9";
 import { REST } from "@discordjs/rest"
-import cluster from "cluster";
 
 export default (client: Client): void => {
   client.on("ready", async () => {
@@ -37,7 +36,7 @@ export default (client: Client): void => {
       .setColor('#00FF00')
       .setTitle(`I'm back!`)
       .setAuthor({name: client.user.username, iconURL: 'https://www.iconsdb.com/icons/preview/guacamole-green/circle-xxl.png'})
-      .setDescription(`Hey you! you're finally awake 🤨`)
+      .setDescription(`Hey you! i'm finally awake 🤨`)
       .setThumbnail(client.user.displayAvatarURL())
       .setTimestamp(new Date())
       .setFooter({text: "© Herumutu's BOT Corporation"});
@@ -53,6 +52,7 @@ export default (client: Client): void => {
         for(var channel of guild[1].channels.cache.entries()){
           if(channel[1].type === ChannelType.GuildText){
             channel[1].send({ embeds: [embed] })
+            break
           }
         }
       }
