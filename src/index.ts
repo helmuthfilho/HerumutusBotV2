@@ -5,6 +5,18 @@ import 'dotenv/config.js';
 import { Client, Collection, GatewayIntentBits } from "discord.js"
 import ready from "./listeners/ready";
 import command from "./listeners/command"
+import express from 'express';
+import {Request, Response} from 'express'
+
+const port = process.env.PORT || 5000
+const app = express();
+app.get("/", (request: Request, response: Response) => {
+  const ping = new Date();
+  ping.setHours(ping.getHours() - 3);
+  console.log(`Ping received at ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
+  response.sendStatus(200);
+});
+app.listen(port, () => console.log(`i'm listening on port ${port}`)); 
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds]
