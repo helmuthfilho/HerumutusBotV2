@@ -8,16 +8,6 @@ import command from "./listeners/command"
 import express from 'express';
 import {Request, Response} from 'express'
 
-const port = process.env.PORT || 5000
-const app = express();
-app.get("/", (request: Request, response: Response) => {
-  const ping = new Date();
-  ping.setHours(ping.getHours() - 3);
-  console.log(`Ping received at ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
-  response.sendStatus(200);
-});
-app.listen(port, () => console.log(`i'm listening on port ${port}`)); 
-
 const client = new Client({
   intents: [GatewayIntentBits.Guilds]
 });
@@ -37,3 +27,13 @@ ready(client);
 command(client);
 
 client.login(process.env.TOKEN)
+
+const port = process.env.PORT || 5000
+const app = express();
+app.get("/", (request: Request, response: Response) => {
+  const ping = new Date();
+  ping.setHours(ping.getHours() - 3);
+  console.log(`Ping received at ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
+  response.sendStatus(200);
+});
+app.listen(port, () => console.log(`i'm listening on port ${port}`)); 
